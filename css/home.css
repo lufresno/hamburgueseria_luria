@@ -1,0 +1,194 @@
+/* Reseteo básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Variables de colores según guía de estilos */
+:root {
+    --color-primary: #D05A31;
+    --color-background: #F8F3E6;
+    --color-text: #333333;
+    --color-green: #8CAF88;
+    --color-brown: #9B6A46;
+    --color-yellow: #F9DC5C;
+    --color-gray: #E5E5E5;
+}
+
+/* Estilos generales del cuerpo */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-image: url("/hamburgueseria_luria/assets/fondo_home.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    color: var(--color-text);
+    padding: 0;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Estilos del encabezado */
+header {
+    padding: 20px 15px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 6px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: var(--color-text);
+}
+
+.subtitle {
+    font-size: 10px;
+    color: var(--color-text);
+    opacity: 0.8;
+}
+
+/* Contenedor de cards con scroll horizontal */
+.cards-container {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    padding: 10px;
+    margin: 0;
+    -webkit-overflow-scrolling: touch; /* Para scroll suave en iOS */
+    scrollbar-width: none; /* Oculta scrollbar en Firefox */
+    -ms-overflow-style: none; /* Oculta scrollbar en IE/Edge */
+}
+
+/* Oculta la barra de desplazamiento en Chrome/Safari */
+.cards-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Estilos de cada card */
+.card {
+    position: relative;
+    flex: 0 0 auto;
+    width: 60%;
+    max-width: 280px;
+    height: 55px;
+    margin-right: 15px;
+    overflow: hidden;
+    border-radius: 15px;
+    scroll-snap-align: center;
+}
+
+/* Elimina el margen derecho de la última card */
+.card:last-child {
+    margin-right: 10px; /* Un pequeño margen para que se vea que hay más contenido */
+}
+
+/* Fondo de cada card */
+.card-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+/* Imágenes de fondo para cada card */
+.card:nth-child(1) .card-background {
+    background-image: url('/hamburgueseria_luria/assets/fondo_boton_hamburguesas.png');
+}
+
+.card:nth-child(2) .card-background {
+    background-image: url('/hamburgueseria_luria/assets/fondo_boton_entrantes.png');
+}
+
+.card:nth-child(3) .card-background {
+    background-image: url('/hamburgueseria_luria/assets/fondo_boton_postres.png');
+}
+
+.card:nth-child(4) .card-background {
+    background-image: url('/hamburgueseria_luria/assets/fondo_boton_menus.png');
+}
+
+/* Capa oscura sobre la imagen para mejorar legibilidad */
+.card-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(124, 124, 124, 0.2), rgba(119, 119, 119, 0.6));
+    z-index: 2;
+}
+
+/* Contenido de texto */
+.card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+}
+
+.card h2 {
+    font-family: 'Shippori Mincho B1', serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    letter-spacing: 0.5px;
+    white-space: normal;
+}
+
+/* Efecto hover en las cards */
+.card:hover .card-background {
+    transform: scale(1.05);
+}
+
+/* Media queries para tablets y escritorio */
+@media (min-width: 768px) {
+    .cards-container {
+        flex-wrap: wrap;
+        justify-content: center;
+        overflow-x: visible;
+        scroll-snap-type: none;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        gap: 20px;
+    }
+    
+    .card {
+        width: calc(25% - 15px);
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+    
+    .card:last-child {
+        margin-right: 0;
+    }
+}
+
+@media (min-width: 1024px) {
+    .cards-container {
+        gap: 30px;
+    }
+    
+    .card {
+        flex: 0 0 calc(25% - 23px);
+    }
+}
