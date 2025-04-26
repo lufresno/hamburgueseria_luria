@@ -19,176 +19,119 @@
 /* Estilos generales del cuerpo */
 body {
     font-family: 'Montserrat', sans-serif;
-    background-image: url("/hamburgueseria_luria/assets/fondo_home.png");
+    background-image: url("/hamburgueseria_luria/assets/fondo_home_def_siquesi.png");
     background-repeat: no-repeat;
     background-attachment: fixed;
+    background-position-x: right;
     background-size: cover;
     color: var(--color-text);
     padding: 0;
     margin: 0;
     line-height: 1.5;
+    min-height: 100vh;
 }
 
-/* Estilos del encabezado */
-header {
-    padding: 20px 15px;
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-h1 {
-    font-family: 'Shippori Mincho B1', serif;
-    font-size: 6px;
-    font-weight: 700;
-    margin-bottom: 5px;
-    color: var(--color-text);
-}
-
-.subtitle {
-    font-size: 10px;
-    color: var(--color-text);
-    opacity: 0.8;
-}
-
-/* Contenedor de cards con scroll horizontal */
-.cards-container {
+/* Contenedor del menú deslizable */
+.menu-container {
+    position: fixed;
+    top: 30vh;
+    left: 0;
+    right: 0;
+    height: 7vh;
     display: flex;
-    flex-direction: row;
     overflow-x: auto;
-    overflow-y: hidden;
     scroll-snap-type: x mandatory;
-    padding: 10px;
-    margin: 0;
-    -webkit-overflow-scrolling: touch; /* Para scroll suave en iOS */
+    background-color: #8CAF88;
     scrollbar-width: none; /* Oculta scrollbar en Firefox */
     -ms-overflow-style: none; /* Oculta scrollbar en IE/Edge */
+    -webkit-overflow-scrolling: touch; /* Para scroll suave en iOS */
+    padding: 0 10px;
 }
 
 /* Oculta la barra de desplazamiento en Chrome/Safari */
-.cards-container::-webkit-scrollbar {
+.menu-container::-webkit-scrollbar {
     display: none;
 }
 
-/* Estilos de cada card */
-.card {
-    position: relative;
-    flex: 0 0 auto;
-    width: 60%;
-    max-width: 280px;
-    height: 55px;
+/* Estilo de cada elemento del menú */
+.menu-item {
+    flex: 0 0 40%;
+    min-width: 120px;
+    height: 100%;
     margin-right: 15px;
-    overflow: hidden;
     border-radius: 15px;
+    position: relative;
     scroll-snap-align: center;
+    text-decoration: none;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Elimina el margen derecho de la última card */
-.card:last-child {
-    margin-right: 10px; /* Un pequeño margen para que se vea que hay más contenido */
+/* El último elemento tiene menos margen */
+.menu-item:last-child {
+    margin-right: 10px;
 }
 
-/* Fondo de cada card */
-.card-background {
+/* Fondo de cada elemento del menú */
+.menu-background {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-size: cover;
-    background-position: center;
+    background-color: #8CAF88;
     z-index: 1;
     transition: transform 0.3s ease;
 }
 
-/* Imágenes de fondo para cada card */
-.card:nth-child(1) .card-background {
-    background-image: url('/hamburgueseria_luria/assets/fondo_boton_hamburguesas.png');
-}
-
-.card:nth-child(2) .card-background {
-    background-image: url('/hamburgueseria_luria/assets/fondo_boton_entrantes.png');
-}
-
-.card:nth-child(3) .card-background {
-    background-image: url('/hamburgueseria_luria/assets/fondo_boton_postres.png');
-}
-
-.card:nth-child(4) .card-background {
-    background-image: url('/hamburgueseria_luria/assets/fondo_boton_menus.png');
-}
-
-/* Capa oscura sobre la imagen para mejorar legibilidad */
-.card-background::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(124, 124, 124, 0.2), rgba(119, 119, 119, 0.6));
+/* Texto del menú */
+.menu-item h2 {
+    position: relative;
     z-index: 2;
-}
-
-/* Contenido de texto */
-.card-content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 10px;
-    z-index: 3;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    height: 100%;
-}
-
-.card h2 {
     font-family: 'Shippori Mincho B1', serif;
     font-size: 24px;
     font-weight: bold;
     color: white;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    text-align: center;
     letter-spacing: 0.5px;
-    white-space: normal;
 }
 
-/* Efecto hover en las cards */
-.card:hover .card-background {
+/* Efecto hover */
+.menu-item:hover .menu-background {
     transform: scale(1.05);
 }
 
-/* Media queries para tablets y escritorio */
+/* Media queries para tabletas y escritorio */
 @media (min-width: 768px) {
-    .cards-container {
+    .menu-container {
+        position: relative;
+        top: 26vh;
         flex-wrap: wrap;
         justify-content: center;
+        height: auto;
         overflow-x: visible;
         scroll-snap-type: none;
         max-width: 1200px;
         margin: 0 auto;
-        padding: 0 20px;
+        padding: 10px 20px;
         gap: 20px;
     }
     
-    .card {
+    .menu-item {
         width: calc(25% - 15px);
-        margin-right: 0;
-        margin-bottom: 20px;
-    }
-    
-    .card:last-child {
+        height: 7vh;
         margin-right: 0;
     }
 }
 
 @media (min-width: 1024px) {
-    .cards-container {
+    .menu-container {
         gap: 30px;
     }
     
-    .card {
+    .menu-item {
         flex: 0 0 calc(25% - 23px);
     }
 }
