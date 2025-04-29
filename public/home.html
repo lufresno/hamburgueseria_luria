@@ -6,31 +6,64 @@
     <title>Luría || Nuestras Especialidades</title>
     <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/hamburgueseria_luria/css/home.css">
+    <link rel="stylesheet" href="/hamburgueseria_luria/css/cards.css">
 </head>
 <body>
+
     <header>
+        <img src="/hamburgueseria_luria/assets/logo.png">
     </header>
 
-    <nav class="menu-container">
-        <a href="burgers.html" class="menu-item">
-            <div class="menu-background"></div>
-            <h2>Burgers</h2>
-        </a>
-        
-        <a href="entrantes.html" class="menu-item">
-            <div class="menu-background"></div>
-            <h2>Entrantes</h2>
-        </a>
-        
-        <a href="postres.html" class="menu-item">
-            <div class="menu-background"></div>
-            <h2>Postres</h2>
-        </a>
-        
-        <a href="menus.html" class="menu-item">
-            <div class="menu-background"></div>
-            <h2>Menús</h2>
-        </a>
-    </nav>
+    <!-- Menú con flechas de navegación -->
+    <div class="menu-container-wrapper">
+        <button class="menu-arrow menu-arrow-left" id="menuArrowLeft"></button>
+        <nav class="menu-container" id="menuContainer">
+            <a href="burgers.html" class="menu-item">
+                <div class="menu-background"></div>
+                <h2>Burgers</h2>
+            </a>
+            
+            <a href="entrantes.html" class="menu-item">
+                <div class="menu-background"></div>
+                <h2>Entrantes</h2>
+            </a>
+            
+            <a href="postres.html" class="menu-item">
+                <div class="menu-background"></div>
+                <h2>Postres</h2>
+            </a>
+            
+            <a href="menus.html" class="menu-item">
+                <div class="menu-background"></div>
+                <h2>Menús</h2>
+            </a>
+        </nav>
+        <button class="menu-arrow menu-arrow-right" id="menuArrowRight"></button>
+    </div>
+
+    <div style="height: 10vh; width: 100%;"></div>
+    
+    <!-- Contenedor de cards con efecto de visibilidad -->
+    <div class="cards-wrapper">
+        <div class="cards-container">
+            <div class="card">
+                <img src="/hamburgueseria_luria/assets/card_katsu_sando_burger.png" alt="Especialidad 1">
+            </div>
+            <div class="card">
+                <img src="/hamburgueseria_luria/assets/card_shogun_burger_prueba.png" alt="Especialidad 2">
+            </div>
+            <div class="card">
+                <img src="/hamburgueseria_luria/assets/card_spicy_ramen_burger.png" alt="Especialidad 3">
+            </div>
+            <div class="card">
+                <img src="/hamburgueseria_luria/assets/card_teriyaki_classic_burger.png" alt="Especialidad 4">
+            </div>
+            <div class="card">
+                <img src="/hamburgueseria_luria/assets/card_tokyo_street_burger.png" alt="Especialidad 5">
+            </div>
+        </div>
+    </div>
+    <!-- Script JS -->
+    <script src="/hamburgueseria_luria/js/home.js"></script>
 </body>
 </html>

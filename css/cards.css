@@ -1,0 +1,115 @@
+/* Contenedor de Cards - Mobile First */
+.cards-wrapper {
+    position: fixed;
+    max-width: 100%;
+    margin: 0 auto;
+    background: url("/hamburgueseria_luria/assets/tablero_fondo.png") center center;
+    background-size: contain;
+    background-repeat: repeat-y;
+    border-radius: 10px;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.cards-container {
+    position: relative;
+    max-width: 100%;
+    margin-top:20vh;
+    height: 70vh; /* Altura fija para el contenedor */
+    padding: 20px;
+    padding-bottom: 20vh; /* Añadimos espacio adicional al final */
+    overflow: auto; /* Permitimos scroll dentro del contenedor */
+    scrollbar-width: thin; /* Barra de scroll delgada en Firefox */
+    -ms-overflow-style: thin; /* Para IE/Edge */
+}
+
+/* Ocultar scrollbar en Chrome/Safari pero mantener funcionalidad */
+.cards-container::-webkit-scrollbar {
+    width: 4px;
+}
+
+.cards-container::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+}
+
+/* Estilo para cada card */
+.card {
+    width: calc(100% - 20px);
+    max-width: 350px;
+    margin: 0 auto 20px auto;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+    opacity: 1;
+    position: relative;
+}
+
+/* Estilo para la imagen dentro de la card */
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+/* Efecto hover para las cards */
+.card:hover {
+    transform: translateY(-3px);
+}
+
+.card:hover img {
+    transform: scale(1.03);
+}
+
+/* Máscaras de desvanecimiento en los bordes */
+.mask-top, .mask-bottom {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    pointer-events: none; /* Para permitir el scroll */
+    z-index: 10;
+}
+
+
+/* Media queries para tabletas */
+@media (min-width: 768px) {
+    .cards-wrapper {
+        max-width: 90%;
+    }
+    
+    .cards-container {
+        height: 85vh;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        align-items: start;
+    }
+    
+    .card {
+        width: 100%;
+        margin: 0;
+    }
+}
+
+/* Media queries para desktop */
+@media (min-width: 1024px) {
+    .cards-wrapper {
+        max-width: 1000px;
+    }
+    
+    .cards-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+        height: 90vh;
+    }
+    
+    /* Para pantallas más grandes mostramos 4 cards visibles en rejilla */
+    @media (min-width: 1280px) {
+        .cards-container {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}
