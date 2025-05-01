@@ -14,7 +14,7 @@
 .cards-container {
     position: relative;
     max-width: 100%;
-    margin-top:20vh;
+    margin-top:16vh;
     height: 70vh; /* Altura fija para el contenedor */
     padding: 20px;
     padding-bottom: 20vh; /* Añadimos espacio adicional al final */
@@ -44,6 +44,7 @@
     position: relative;
 }
 
+
 /* Estilo para la imagen dentro de la card */
 .card img {
     width: 100%;
@@ -51,6 +52,7 @@
     object-fit: cover;
     display: block;
     transition: transform 0.3s ease;
+
 }
 
 /* Efecto hover para las cards */

@@ -131,10 +131,22 @@ function initCardsVisibility() {
             // Si está fuera de los límites visibles o fuera del tablón
             if (cardMidpoint < containerTop || cardMidpoint > containerBottom || !isInBoard) {
                 opacity = 0;
+                
+                // Deshabilitar el botón cuando no es visible (si existe)
+                const button = card.querySelector('.burger-button');
+                if (button) button.disabled = true;
             } 
             // Si está cerca del borde, reducir opacidad gradualmente
             else if (distanceToEdge < 50) {
                 opacity = distanceToEdge / 50;
+                
+                // Permitir o no el clic según la opacidad (si existe botón)
+                const button = card.querySelector('.burger-button');
+                if (button) button.disabled = opacity <= 0.5;
+            } else {
+                // Habilitar el botón cuando es completamente visible (si existe)
+                const button = card.querySelector('.burger-button');
+                if (button) button.disabled = false;
             }
             
             // Aplicar efecto visual

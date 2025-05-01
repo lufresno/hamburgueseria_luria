@@ -3,39 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luría || Nuestras Especialidades</title>
+    <title>Luría | Nuestras Especialidades</title>
     <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/hamburgueseria_luria/css/home.css">
     <link rel="stylesheet" href="/hamburgueseria_luria/css/cards.css">
+    <link rel="icon" href="/hamburgueseria_luria/assets/flor.png" type="image/png">
+    <style>
+        /* Corrección para asegurar que las imágenes sean visibles */
+        .menu-item img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            position: absolute;
+            top: 50%;
+            left: 30%;
+            transform: translate(-50%, -50%);
+            opacity: 1;
+            z-index: 2;
+            filter: brightness(1.5) contrast(1.2);
+        }
+
+        .menu-item h2 {
+            margin-left: 25px;
+            z-index: 2;
+        }
+
+        /* En pantallas pequeñas, hacemos las imágenes más visibles */
+        @media (max-width: 767px) {
+            .menu-item img {
+                width: 140px;
+                height: 20px;
+                left: 50%;
+            }
+            
+            .menu-item h2 {
+                font-size: 20px;
+                margin-left: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-
-    <header>
-        <img src="/hamburgueseria_luria/assets/logo.png">
-    </header>
-
     <!-- Menú con flechas de navegación -->
     <div class="menu-container-wrapper">
         <button class="menu-arrow menu-arrow-left" id="menuArrowLeft"></button>
         <nav class="menu-container" id="menuContainer">
+            <!-- Usando rutas de imágenes probables y elementos img verificados -->
             <a href="burgers.html" class="menu-item">
+                <img src="/hamburgueseria_luria/assets/nav_icons/hamburguesas.png" alt="Burgers icon">
                 <div class="menu-background"></div>
-                <h2>Burgers</h2>
             </a>
             
-            <a href="entrantes.html" class="menu-item">
+            <a href="complementos.html" class="menu-item">
+                <img src="/hamburgueseria_luria/assets/nav_icons/complementos.png" alt="Entrantes icon">
                 <div class="menu-background"></div>
-                <h2>Entrantes</h2>
             </a>
             
             <a href="postres.html" class="menu-item">
+                <img src="/hamburgueseria_luria/assets/nav_icons/postres.png" alt="Postres icon">
                 <div class="menu-background"></div>
-                <h2>Postres</h2>
             </a>
             
-            <a href="menus.html" class="menu-item">
+            <a href="bebidas.html" class="menu-item">
+                <img src="/hamburgueseria_luria/assets/nav_icons/bebidas.png" alt="Menús icon">
                 <div class="menu-background"></div>
-                <h2>Menús</h2>
             </a>
         </nav>
         <button class="menu-arrow menu-arrow-right" id="menuArrowRight"></button>
@@ -47,23 +78,34 @@
     <div class="cards-wrapper">
         <div class="cards-container">
             <div class="card">
-                <img src="/hamburgueseria_luria/assets/card_katsu_sando_burger.png" alt="Especialidad 1">
+                <button type="button" class="burger-button" onclick="location.href='/hamburgueseria_luria/burgers/shogun.html'">
+                    <img src="/hamburgueseria_luria/assets/menu/cards_hamburguesas_animacion/card_shogun_burger.png" alt="Shogun Burger">
+                </button>
             </div>
             <div class="card">
-                <img src="/hamburgueseria_luria/assets/card_shogun_burger_prueba.png" alt="Especialidad 2">
+                <button type="button" class="burger-button" onclick="location.href='/hamburgueseria_luria/burgers/katsu_sando.html'">
+                    <img src="/hamburgueseria_luria/assets/menu/cards_hamburguesas_animacion/card_katsu_sando_burger.png" alt="Katsu Sando Burger">
+                </button>
             </div>
             <div class="card">
-                <img src="/hamburgueseria_luria/assets/card_spicy_ramen_burger.png" alt="Especialidad 3">
+                <button type="button" class="burger-button" onclick="location.href='/hamburgueseria_luria/burgers/spicy_ramen.html'">
+                    <img src="/hamburgueseria_luria/assets/menu/cards_hamburguesas_animacion/card_spicy_ramen_burger.png" alt="Spicy Ramen Burger">
+                </button>
             </div>
             <div class="card">
-                <img src="/hamburgueseria_luria/assets/card_teriyaki_classic_burger.png" alt="Especialidad 4">
+                <button type="button" class="burger-button" onclick="location.href='/hamburgueseria_luria/burgers/teriyaki.html'">
+                    <img src="/hamburgueseria_luria/assets/menu/cards_hamburguesas_animacion/card_teriyaki_classic_burger.png" alt="Teriyaki Classic Burger">
+                </button>
             </div>
             <div class="card">
-                <img src="/hamburgueseria_luria/assets/card_tokyo_street_burger.png" alt="Especialidad 5">
+                <button type="button" class="burger-button" onclick="location.href='/hamburgueseria_luria/burgers/okinawa.html'">
+                    <img src="/hamburgueseria_luria/assets/menu/cards_hamburguesas_animacion/okinawa_soul_burger.png" alt="Okinawa Soul Burger">
+                </button>
             </div>
         </div>
     </div>
-    <!-- Script JS -->
+    
+    <!-- Script JS principal -->
     <script src="/hamburgueseria_luria/js/home.js"></script>
 </body>
 </html>

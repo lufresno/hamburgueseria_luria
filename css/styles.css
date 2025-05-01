@@ -25,16 +25,15 @@ body {
     position: relative;
 }
 
-/* Imagen de fondo */
+/* Video de fondo (usando la misma clase bg-image) */
 .bg-image {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: fill;
+    object-fit: cover; /* Cambiado de 'fill' a 'cover' para mejor visualización */
     z-index: 0;
-    background-position: center;
 }
 
 /* Botón centrado */
