@@ -212,6 +212,12 @@ header img {
 @media (min-width: 768px) {
     body {
         padding-bottom: 70px; /* Más espacio en pantallas más grandes */
+        font-family: 'Montserrat', sans-serif;
+        background-image: url("/hamburgueseria_luria/assets/fondos_recursos/20250507_1615_Adaptación\ Sin\ Cambios_remix_01jtnhgt0rfqxb5ep2jx5ky5fs.png");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position-x: center;
+        background-size: cover;
     }
     
     header img {
