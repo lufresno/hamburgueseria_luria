@@ -1,339 +1,285 @@
-/* Reseteo básico */
+/* ───────────────────────────────────
+   RESET & VARIABLES
+─────────────────────────────────── */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Variables de colores según guía de estilos */
 :root {
-    --color-primary: #D05A31;
-    --color-background: #F8F3E6;
-    --color-text: #333333;
-    --color-green: #8CAF88;
-    --color-brown: #9B6A46;
-    --color-yellow: #F9DC5C;
-    --color-gray: #E5E5E5;
-    --color-tablero: #B0925A;
+  --color-primary: #D05A31;
+  --color-text: #333;
+  --overlay-h: 20vh;   /* altura tapa móvil */
+  --menu-offset: 18vh; /* margen-top menú móvil */
 }
 
-/* Estilos generales del cuerpo - Mobile First */
+/* ───────────────────────────────────
+   CAPA 0 · Fondo base (móvil / tablet)
+─────────────────────────────────── */
 body {
-    font-family: 'Montserrat', sans-serif;
-    background-image: url("/hamburgueseria_luria/assets/fondos_recursos/dashboard.png");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-    background-size: cover;
-    color: var(--color-text);
-    padding: 0;
-    margin: 0;
-    line-height: 1.5;
-    min-height: 100vh;
-    overflow-x: hidden;
+  font-family: 'Montserrat', sans-serif;
+  background-image: url("/hamburgueseria_luria/assets/fondos_recursos/dashboard.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  color: var(--color-text);
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-header {
+/* ───────────────────────────────────
+   CAPA 3 · Tapa (solo móvil / tablet)
+─────────────────────────────────── */
+.top-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--overlay-h);
+  background-image: url("/hamburgueseria_luria/assets/fondos_recursos/dashboard.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  pointer-events: none;
+  z-index: 250; /* Adjusted z-index */
+}
+
+/* ───────────────────────────────────
+   ICONOS ESQUINA
+─────────────────────────────────── */
+.corner-links {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px; /* Default height, adjusted for mobile/tablet, overridden for desktop */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px; /* Padding from viewport edges */
+  z-index: 400;    /* Highest, so icons are on top */
+  pointer-events: none; /* Allows clicks to pass through transparent parts of this div */
+}
+/* Ensure direct children <a> tags are targeted if .corner-link is the class on <a> */
+.corner-links > .corner-link {
+    pointer-events: auto; /* Make the icon links themselves clickable */
     display: flex;
-    justify-content: center;
     align-items: center;
-    padding: 15px 20px;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
+}
+.corner-link img {
+  width: 50px;
+  height: auto; /* Maintain aspect ratio */
+  object-fit: contain; /* Good for icons */
+  transition: transform .3s;
+}
+.corner-link img:hover {
+  transform: scale(1.1);
 }
 
-header img {
-    position: fixed;
-    z-index: 10;
-    margin-top: 10px;
-    max-width: 90px;
-    height: auto;
-    transition: max-width 0.3s ease;
-}
-
-/* Contenedor del menú con posición relativa para posicionar las flechas */
+/* ───────────────────────────────────
+   MENÚ + FLECHAS (Mobile/Tablet specific wrapper)
+─────────────────────────────────── */
 .menu-container-wrapper {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 100;
-    padding-top: 15px;
+  position: fixed;
+  top: 0; /* Will be adjusted for desktop */
+  width: 100%;
+  z-index: 350; /* Below corner-links, above general content/overlay */
+                  /* This wrapper itself is not the visual bar on desktop */
 }
 
-/* Contenedor del menú deslizable con overflow hidden */
-.menu-container {
-    position: relative;
-    width: 100%;
-    height: 60px;
-    overflow-x: auto;
-    display: flex;
-    align-items: center;
-    background-color: rgba(176, 146, 90, 0.85);
-    scroll-behavior: smooth;
-    padding: 0 15px;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
-}
-
-/* Ocultar scrollbar para Chrome, Safari y Opera */
-.menu-container::-webkit-scrollbar {
-    display: none;
-}
-
-/* Flechas de navegación */
+/* Flechas de scroll */
 .menu-arrow {
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.3);
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-    z-index: 200;
-    border: none;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+  position: absolute;
+  top: 23vh; /* Relative to mobile menu position */
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  z-index: 370; /* Above menu items if they scroll */
 }
-
-.menu-arrow.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.menu-arrow-left {
-    left: 0;
-    border-top-right-radius: 50%;
-    border-bottom-right-radius: 50%;
-}
-
-.menu-arrow-right {
-    right: 0;
-    border-top-left-radius: 50%;
-    border-bottom-left-radius: 50%;
-}
-
-/* Añadir un icono de flecha */
 .menu-arrow::before {
-    content: '';
-    display: block;
-    width: 12px;
-    height: 12px;
-    border-top: 3px solid white;
-    border-right: 3px solid white;
+  content: '';
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-top: 3px solid #FFFFAB;
+  border-right: 3px solid #FFFFAB;
 }
+.menu-arrow-left { left: 5px; }
+.menu-arrow-left::before { transform: rotate(-135deg); }
+.menu-arrow-right { right: 5px; }
+.menu-arrow-right::before { transform: rotate(45deg); }
 
-.menu-arrow-left::before {
-    transform: rotate(-135deg);
-    margin-left: 5px;
+.menu-container { /* This is the actual list of menu items */
+  position: relative; /* Changed from fixed for desktop context */
+  margin: 0 auto;
+  width: 100%;
+  max-width: 600px; /* Mobile/Tablet constraint for the scrollable area */
+  height: 50px;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 0 60px; /* Mobile padding for arrows to not overlap items */
+  background: #442C0C; /* Mobile/Tablet background for the menu list */
+  margin-top: var(--menu-offset); /* Mobile positioning */
+  scrollbar-width: none;
 }
+.menu-container::-webkit-scrollbar { display: none; }
 
-.menu-arrow-right::before {
-    transform: rotate(45deg);
-    margin-right: 5px;
-}
-
-/* Estilo de cada elemento del menú */
 .menu-item {
-    flex: 0 0 auto;
-    min-width: 120px;
-    height: 100%;
-    margin-right: 10px;
-    border-radius: 15px;
-    position: relative;
-    text-decoration: none;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 0 15px;
-    white-space: nowrap;
+  position: relative;
+  flex: 0 0 auto;
+  min-width: 140px;
+  height: 100%;
+  margin-right: 10px;
 }
-
-.menu-item.active .menu-background {
-    background-color: rgba(208, 90, 49, 0.8);
-}
-
-.menu-item:last-child {
-    margin-right: 5px;
-}
-
-/* Fondo de cada elemento del menú */
-.menu-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    transition: background-color 0.3s ease;
-    border-radius: 15px;
-}
-
-/* Imágenes del menú */
 .menu-item img {
-    width: 30px;
-    height: 30px;
-    object-fit: contain;
-    margin-right: 10px;
-    z-index: 2;
-    position: relative;
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 60px; height: 60px;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+  filter: brightness(1.5) contrast(1.2);
+  z-index: 2;
+}
+.menu-background {
+  position: absolute;
+  inset: 0;
+  border-radius: 15px;
+  background: transparent;
+  transition: background .3s;
+  z-index: 1;
+}
+.menu-item:hover .menu-background,
+.menu-item.active .menu-background {
+  background: rgba(208, 90, 49, 0.8);
 }
 
-/* Texto del menú */
-.menu-item h2 {
-    position: relative;
-    z-index: 2;
-    font-family: 'Shippori Mincho B1', serif;
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-    margin: 0;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-}
-
-/* Efecto hover */
-.menu-item:hover .menu-background {
-    background-color: rgba(208, 90, 49, 0.8);
-}
-
-/* Estilos para los botones de hamburguesas */
-.burger-button {
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    border: none;
-    background: none;
-    cursor: pointer;
-    display: block;
-    outline: none;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.3s ease;
-}
-
-.burger-button:focus {
-    outline: none;
-}
-
-.burger-button img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.3s ease;
-}
-
-/* Efecto hover para los botones */
-.burger-button:hover img {
-    transform: scale(1.03);
-}
-
-/* Efecto de pulsación para los botones */
-.burger-button:active {
-    transform: scale(0.98);
-}
-
-/* Media queries para tabletas */
+/* ───────────────────────────────────
+   TABLET (≥ 768 px)
+─────────────────────────────────── */
 @media (min-width: 768px) {
-    body {
-        background-image: url("/hamburgueseria_luria/assets/fondos_recursos/fondo_ordenador_prueba.png");
-    }
-    
-    header img {
-        max-width: 150px;
-    }
-    
-    .menu-container-wrapper {
-        position: relative;
-        padding-top: 30px;
-        margin-bottom: 20px;
-    }
-    
-    .menu-container {
-        height: 70px;
-        justify-content: center;
-        overflow-x: visible;
-        background-color: rgba(176, 146, 90, 0.9);
-        max-width: 90%;
-        margin: 0 auto;
-        border-radius: 20px;
-    }
-    
-    .menu-item {
-        flex: 0 0 auto;
-        min-width: 160px;
-        margin: 0 10px;
-        justify-content: center;
-    }
-    
-    .menu-item img {
-        width: 35px;
-        height: 35px;
-    }
-    
-    .menu-item h2 {
-        font-size: 18px;
-    }
-    
-    .menu-arrow {
-        display: none;
-    }
+  .top-overlay { display: none !important; }
+
+  .corner-links { height: 90px; /* Tablet bar height */ }
+  .corner-link img { width: 60px; }
+
+  .menu-container { /* The scrollable list of menu items */
+    height: 90px;
+    max-width: 800px; /* Wider scrollable area */
+    /* margin-top: var(--menu-offset); still applies if it's not at top:0 */
+  }
+  .menu-item img { width: 80px; height: 80px; }
+  .menu-arrow { top: calc(var(--menu-offset) + 45px); /* Adjust if menu-offset changes or menu is at top */ }
 }
 
-/* Media queries para desktop */
-@media (min-width: 1024px) {
-    header img {
-        max-width: 180px;
-    }
-    
-    .menu-container {
-        max-width: 80%;
-        height: 80px;
-    }
-    
-    .menu-item {
-        min-width: 200px;
-    }
-    
-    .menu-item img {
-        width: 40px;
-        height: 40px;
-    }
-    
-    .menu-item h2 {
-        font-size: 20px;
-    }
-}
+/* ───────────────────────────────────
+   DESKTOP (≥ 900 px)
+─────────────────────────────────── */
+@media (min-width: 900px) {
+  body {
+    background-image: url("/hamburgueseria_luria/assets/fondos_recursos/elPUTOfondoJODER.png");
+    background-size: cover;
+    background-position: center bottom;
+  }
 
-/* Media queries para pantallas grandes */
+  .corner-links { /* Full width transparent layer for icon positioning */
+    height: 95px; /* Match visual menu bar height */
+    padding: 0 20px; /* Padding for icons from viewport edge */
+     /* z-index: 400; pointer-events: none; already set globally */
+  }
+  .corner-link img {
+    width: 70px;
+    height: 70px; /* Explicit height */
+  }
+
+  /* menu-container-wrapper is NOT the visual bar on desktop.
+     It's just a wrapper. The .menu-container itself becomes the visual bar. */
+  .menu-container-wrapper {
+    position: fixed;
+    top: 0;
+    /* These define the space for the menu bar, between icons */
+    left: 110px;  /* Approx. 70px icon + 20px padding + 20px buffer */
+    right: 110px; /* Approx. 70px icon + 20px padding + 20px buffer */
+    width: auto; /* Important: override 100% width */
+    height: 95px; /* Visual bar height */
+    z-index: 350; /* Below corner-links, above page content */
+    margin-top: 0; /* Override mobile positioning */
+    display: flex; /* To center the .menu-container if it's not full width of wrapper */
+    justify-content: center;
+    align-items: center;
+    background: #442C0C; /* THIS IS THE VISIBLE BAR BACKGROUND */
+    padding: 0; /* Wrapper itself has no padding now */
+  }
+
+  .menu-container { /* The list of menu items, now part of the visual bar */
+    margin: 0; /* Reset mobile margins */
+    max-width: none; /* Fills its wrapper */
+    width: 100%;     /* Fills its wrapper */
+    height: 100%;    /* Fills its wrapper */
+    background: transparent; /* Wrapper now has the background */
+    overflow-x: hidden;
+    padding: 0 20px; /* Internal padding for menu items */
+    display: flex;
+    justify-content: center; /* Or space-around, space-between */
+    align-items: center;
+    gap: 30px; /* Adjust as desired */
+  }
+
+  .menu-item {
+    margin-right: 0; /* Gap handles spacing */
+  }
+  .menu-item img {
+    width: 90px;
+    height: 90px;
+  }
+  .menu-arrow {
+    display: none;
+  }
+}
+/* ───────────────────────────────────
+   GRANDES RESOLUCIONES  ≥ 1440 px
+─────────────────────────────────── */
 @media (min-width: 1440px) {
-    body {
-        /* Cambiamos cómo se muestra el fondo en pantallas grandes */
-        background-size: auto 100%; /* Mantiene la altura al 100% y el ancho se ajusta automáticamente */
-        background-position: center center;
-    }
-    
-    .menu-container {
-        max-width: 70%;
-    }
-    
-    .menu-item {
-        min-width: 220px;
-    }
+  .cards-wrapper {
+    width: 100vw; max-width: none; margin: 0 auto; padding: 30px;
+    background-image: url("/hamburgueseria_luria/assets/fondos_recursos/elPUTOfondoJODER.png");
+    background-attachment: fixed; background-size: cover; background-position-y: bottom;
+  }
+  .cards-container {
+    display: grid; grid-template-columns: repeat(5,1fr); gap: 25px;
+    padding: 30px; margin-top: 0; padding-bottom: 30px;
+  }
+  .card { max-width: 260px; }
+  .card.scrolled-out { opacity: 1; transform: none; }
+
+  /* Adjust spacing for very wide screens if needed */
+  .menu-container-wrapper {
+    left: 150px; /* Example: more space for icons */
+    right: 150px;
+    background-color: transparent;
+  }
+  .menu-container {
+      gap: 180px; /* Example: wider gap for menu items */
+  }
 }
 
-/* Para pantallas extra grandes */
-@media (min-width: 1920px) {
-    body {
-        background-size: auto 100%; /* Reforzamos el ajuste para pantallas muy grandes */
-    }
+/* ───────────────────────────────────
+   PANTALLAS MUY GRANDES  ≥ 2560 px
+─────────────────────────────────── */
+@media (min-width: 2560px) {
+  .cards-wrapper { width: 100vw; max-width: none; }
+  .cards-container { grid-template-columns: repeat(5,1fr); }
+  .card { max-width: 260px; }
+
+  .menu-container-wrapper {
+    left: 200px; /* Example: even more space */
+    right: 200px;
+  }
 }
