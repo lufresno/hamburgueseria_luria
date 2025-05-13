@@ -7,7 +7,6 @@
     background-repeat: repeat-y;
     padding: 15px;
     margin-top: 80px; /* Espacio para el menú fijo */
-    position: relative; /* Necesario para posicionar las máscaras */
 }
 
 .cards-container {
@@ -19,84 +18,17 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    position: relative; /* Para posicionamiento correcto */
-    overflow-y: auto; /* Permitir scroll vertical */
-    max-height: 75vh; /* Altura máxima para permitir scroll */
-    scrollbar-width: thin; /* Scrollbar delgada en Firefox */
-    -ms-overflow-style: none; /* Ocultar scrollbar en IE/Edge */
 }
 
-/* Ocultar scrollbar en Chrome/Safari pero mantener funcionalidad */
-.cards-container::-webkit-scrollbar {
-    width: 4px;
-    background: transparent;
-}
-
-.cards-container::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
-}
-
-/* Máscaras de desvanecimiento para efecto fade */
-.cards-wrapper::before,
-.cards-wrapper::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 80px;
-    pointer-events: none; /* Para permitir scroll/clic a través de ellas */
-    z-index: 10;
-}
-
-.cards-wrapper::before {
-    top: 0;
-    background: linear-gradient(to bottom, 
-                rgba(176, 146, 90, 0.8) 0%, 
-                rgba(176, 146, 90, 0.4) 50%, 
-                rgba(176, 146, 90, 0) 100%);
-}
-
-.cards-wrapper::after {
-    bottom: 0;
-    background: linear-gradient(to top, 
-                rgba(176, 146, 90, 0.8) 0%, 
-                rgba(176, 146, 90, 0.4) 50%, 
-                rgba(176, 146, 90, 0) 100%);
-}
-
-/* Animación para las cards al aparecer */
+/* Estilo para cada card */
 .card {
     width: 100%;
     max-width: 350px;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
-    opacity: 0; /* Comienzan invisibles */
-    animation: fadeIn 0.5s ease forwards;
-    animation-delay: calc(var(--card-index, 0) * 0.1s); /* Retraso por índice */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
-/* Efecto de aparición gradual para las cards */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Aplicar índices para la animación */
-.card:nth-child(1) { --card-index: 1; }
-.card:nth-child(2) { --card-index: 2; }
-.card:nth-child(3) { --card-index: 3; }
-.card:nth-child(4) { --card-index: 4; }
-.card:nth-child(5) { --card-index: 5; }
-.card:nth-child(6) { --card-index: 6; }
 
 /* Estilo para la imagen dentro de la card */
 .card img {
@@ -110,17 +42,10 @@
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    z-index: 5; /* Asegura que la card hover esté por encima */
 }
 
 .card:hover img {
     transform: scale(1.03);
-}
-
-/* Efecto de desaparición cuando se hace scroll */
-.card.fade-out {
-    opacity: 0.3;
-    transition: opacity 0.5s ease;
 }
 
 /* Media queries para tabletas */
@@ -138,18 +63,11 @@
         grid-template-columns: repeat(2, 1fr);
         gap: 25px;
         padding: 20px 20px 60px 20px;
-        max-height: 80vh; /* Ligeramente más alto en tablets */
     }
     
     .card {
         width: 100%;
         margin: 0;
-    }
-    
-    /* Ajustar las máscaras para tablets */
-    .cards-wrapper::before,
-    .cards-wrapper::after {
-        height: 100px;
     }
 }
 
@@ -164,13 +82,6 @@
         grid-template-columns: repeat(2, 1fr);
         gap: 30px;
         padding: 25px 25px 70px 25px;
-        max-height: 85vh;
-    }
-    
-    /* Máscaras más sutiles en desktop */
-    .cards-wrapper::before,
-    .cards-wrapper::after {
-        height: 120px;
     }
 }
 
@@ -191,11 +102,5 @@
 @media (min-width: 1920px) {
     .cards-wrapper {
         background-size: auto 100%; /* Reforzamos el ajuste para pantallas muy grandes */
-    }
-    
-    /* Máscaras más grandes para pantallas extra grandes */
-    .cards-wrapper::before,
-    .cards-wrapper::after {
-        height: 150px;
     }
 }
