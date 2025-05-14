@@ -149,7 +149,7 @@
         <div class="table-container">
           <table>
             <tr><th>Período</th><th>Fecha</th><th>Acción</th></tr>
-            <tr><td>Mayo 2025</td><td>30/05/2025</td><td><a href="/hamburgueseria_luria/assets/nominas_descargables/nomina_mayo_2025.txt" class="btn btn-secondary">Ver más</a></td></tr>
+            <tr><td>Mayo 2025</td><td>30/05/2025</td><td><a href="/hamburgueseria_luria/assets/descargables/nomina_mayo_2025.txt" class="btn btn-secondary">Ver más</a></td></tr>
           </table>
         </div>
         <h3>Histórico</h3>
@@ -1179,7 +1179,7 @@
       <p style="margin-top:1rem;">
 </p>
 <p style="margin-top:1rem;">
-  <a href="/hamburgueseria_luria/assets/nominas_descargables/calendario_laboral_2025_lurias_burger.pdf" target="_blank" class="btn btn-secondary">Ver Calendario en PDF</a>
+  <a href="/hamburgueseria_luria/assets/descargables/calendario_laboral_2025_lurias_burger.pdf" target="_blank" class="btn btn-secondary">Ver Calendario en PDF</a>
 </p>
 
     </div>
@@ -1436,7 +1436,7 @@
         <li><strong>USB y dispositivos externos:</strong> siempre pasar antivirus antes de conectar</li>
         <li><strong>Teletrabajo seguro:</strong> usar VPN, redes seguras, proteger pantalla</li>
       </ul>
-      <p><a href="/hamburgueseria_luria/assets/nominas_descargables/Politica_IT_Ciberseguridad_LuriasBurger.pdf" class="btn btn-secondary" target="_blank">Ver Política IT Completa</a></p>
+      <p><a href="/hamburgueseria_luria/assets/descargables/Politica_IT_Ciberseguridad_LuriasBurger.pdf" class="btn btn-secondary" target="_blank">Ver Política IT Completa</a></p>
 
       <h3>Buenas Prácticas en Ciberseguridad</h3>
       <div class="improvements-grid">
@@ -1499,7 +1499,7 @@
         <li><strong>Actividades y eventos:</strong> Team building, deporte, voluntariado y retos saludables.</li>
         <li><strong>Cultura corporativa:</strong> Historias, valores y participación de empleados en #VozDeLurias.</li>
         <li><strong>Bienestar integral:</strong> Talleres de nutrición, ergonomía, mindfulness y conciliación.</li>
-        <li><strong>Boletín cultural trimestral:</strong> <a href="/hamburgueseria_luria/assets/nominas_descargables/boletin.png" target="_blank">Descargar última edición</a>.</li>
+        <li><strong>Boletín cultural trimestral:</strong> <a href="/hamburgueseria_luria/assets/descargables/boletin.png" target="_blank">Descargar última edición</a>.</li>
       </ul>
       <p>Descubre cómo construimos día a día un gran lugar para trabajar.</p>
     </div>
@@ -1520,8 +1520,8 @@
         <li><strong>Indicadores clave:</strong> gráficos e informes de impacto ambiental y social.</li>
         <li><strong>Documentos oficiales:</strong>
           <ul>
-            <li><a href="/hamburgueseria_luria/assets/nominas_descargables/Politica_Medioambiente.pdf" target="_blank">Política Medioambiental</a></li>
-            <li><a href="/hamburgueseria_luria/assets/nominas_descargables/Reporte_RSC_2025.pdf" target="_blank">Reporte RSC 2025</a></li>
+            <li><a href="/hamburgueseria_luria/assets/descargables/Politica_Medioambiente.pdf" target="_blank">Política Medioambiental</a></li>
+            <li><a href="/hamburgueseria_luria/assets/descargables/Reporte_RSC_2025.pdf" target="_blank">Reporte RSC 2025</a></li>
           </ul>
         </li>
       </ul>
@@ -1588,7 +1588,7 @@
       </ul>
       <h3>Documentación y Recursos</h3>
       <ul>
-        <li><a href="/hamburgueseria_luria/assets/nominas_descargables/Manual_Prevencion_Riesgos_Lurias.pdf" target="_blank">Plan de Prevención de Riesgos Laborales (PDF)</a></li>
+        <li><a href="/hamburgueseria_luria/assets/descargables/Manual_Prevencion_Riesgos_Lurias.pdf" target="_blank">Plan de Prevención de Riesgos Laborales (PDF)</a></li>
         <li><a href="https://www.insst.es/" target="_blank">Guía oficial del Instituto Nacional de Seguridad y Salud en el Trabajo (INSST)</a></li>
       </ul>
     </div>
@@ -1603,37 +1603,6 @@
     </div>
   </footer>
 
-  <script>
-    function openZone(evt, zone) {
-      document.querySelectorAll('.zone-content').forEach(z=>z.style.display='none');
-      document.querySelectorAll('.zone-tab').forEach(t=>t.classList.remove('active'));
-      document.getElementById(zone).style.display='block';
-      evt.currentTarget.classList.add('active');
-    }
-    function handleZoneKeyDown(e, zone){
-      if(e.key==='Enter'||e.key===' ') { e.preventDefault(); openZone(e,zone); }
-    }
-    function openModule(md){
-      const p=document.getElementById(md+'-popup');
-      p&&(p.style.display='flex',document.body.style.overflow='hidden');
-    }
-    function closeModule(md){
-      const p=document.getElementById(md+'-popup');
-      p&&(p.style.display='none',document.body.style.overflow='');
-    }
-    document.addEventListener('click',e=>{
-      if(e.target.classList.contains('module-popup'))
-        closeModule(e.target.id.replace('-popup',''));
-    });
-    document.addEventListener('keydown',e=>{
-      if(e.key==='Escape')
-        document.querySelectorAll('.module-popup[style*="display: flex"]').forEach(p=>
-          closeModule(p.id.replace('-popup',''))
-        );
-    });
-    document.addEventListener('DOMContentLoaded',()=>{
-      document.getElementById('personal').style.display='block';
-    });
-  </script>
+   <script src="/hamburgueseria_luria/js/intranet.js" defer></script>
 </body>
 </html>

@@ -93,7 +93,7 @@ body {
 /* Flechas de scroll */
 .menu-arrow {
   position: absolute;
-  top: 22vh; /* Relative to mobile menu position */
+  top: 21vh; /* Relative to mobile menu position */
   transform: translateY(-50%);
   width: 40px;
   height: 40px;
@@ -184,7 +184,7 @@ body {
 ─────────────────────────────────── */
 @media (min-width: 900px) {
   body {
-    background-image: url("/hamburgueseria_luria/assets/fondos_recursos/elPUTOfondoJODER.png");
+    background-image: url("/hamburgueseria_luria/assets/fondos_recursos/fondo_grande.png");
     background-size: cover;
     background-position: center bottom;
   }
@@ -249,7 +249,7 @@ body {
 @media (min-width: 1440px) {
   .cards-wrapper {
     width: 100vw; max-width: none; margin: 0 auto; padding: 30px;
-    background-image: url("/hamburgueseria_luria/assets/fondos_recursos/elPUTOfondoJODER.png");
+    background-image: url("/hamburgueseria_luria/assets/fondos_recursos/fondo_grande.png");
     background-attachment: fixed; background-size: cover; background-position-y: bottom;
   }
   .cards-container {
